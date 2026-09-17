@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ana Vieira | Teste de Autoconhecimento</title>
+  <meta name="description" content="Um mapeamento completo de identidade em 7 dimensões: como você pensa, decide, lidera e se relaciona quando está sendo genuinamente você.">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --primary:    #1F3D3A;
+      --bg:         #F3F0E6;
+      --surface:    #E7E2D0;
+      --accent:     #B8763E;
+      --text:       #1F3D3A;
+      --muted:      #6B7268;
+      --line:       #DCD4BC;
+      --white:      #FFFFFF;
+      --r-soft:     6px;
+      --r-card:     12px;
+      --r-pill:     999px;
+      --disc-D:     #DC2626;
+      --disc-I:     #F59E0B;
+      --disc-S:     #059669;
+      --disc-C:     #2563EB;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,h2,h3,h4 { font-family: 'Fraunces', Georgia, serif; }
+    em { font-style: italic; }
+
+    /* ── Layout ── */
+    .container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--primary);
+      padding: 18px 0 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 18px;
+    }
+    .logo-text {
+      font-family: 'Fraunces', serif;
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .logo-sub {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.72rem;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-mark {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(184,118,62,0.14); border: 1px solid var(--accent);
+      color: var(--accent); font-family: 'Fraunces', serif; font-weight: 600; font-size: 0.95rem;
+      flex: none;
+    }
+    .logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 6px; }
+    #headerProgress {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      display: none;
+    }
+    .progress-track { height: 4px; background: rgba(255,255,255,0.08); }
+    .progress-fill  { height: 100%; background: var(--accent); width: 0; transition: width .5s ease; }
+
+    /* ── Screens ── */
+    .screen { display: none; padding: 52px 0 96px; }
+    .screen.active { display: block; animation: fadeUp .35s ease; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Intro ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--line);
+      padding: 5px 14px; border-radius: var(--r-pill);
+      font-size: 0.75rem; color: var(--muted); margin-bottom: 24px;
+    }
+    .badge-dot { width:7px; height:7px; background:var(--accent); border-radius:50%; }
+    .intro-title {
+      font-size: clamp(2rem, 5.5vw, 3rem);
+      line-height: 1.15; margin-bottom: 18px;
+    }
+    .intro-title em { color: var(--accent); }
+    .intro-lead {
+      font-size: 1rem; color: var(--muted); line-height: 1.75;
+      max-width: 580px; margin-bottom: 36px;
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+      gap: 14px; margin-bottom: 36px;
+    }
+    .intro-item {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--r-card); padding: 18px;
+    }
+    .intro-item-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .intro-item h4 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.82rem; font-weight: 600; margin-bottom: 3px;
+    }
+    .intro-item p { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+    .intro-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; }
+    .intro-meta span { margin-right: 16px; }
+
+    /* ── Buttons ── */
+    .btn-accent {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--primary);
+      border: none; padding: 15px 36px;
+      border-radius: var(--r-soft); font-family:'Manrope',sans-serif;
+      font-size: .95rem; font-weight: 600; cursor: pointer;
+      transition: opacity .2s; text-decoration: none;
+    }
+    .btn-accent:hover { opacity: .88; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: var(--bg);
+      border: none; padding: 15px 36px;
+      border-radius: var(--r-soft); font-family:'Manrope',sans-serif;
+      font-size: .95rem; font-weight: 500; cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      border: 1px solid var(--line); padding: 13px 28px;
+      border-radius: var(--r-soft); font-family:'Manrope',sans-serif;
+      font-size: .88rem; cursor: pointer; transition: border-color .2s;
+    }
+    .btn-outline:hover { border-color: var(--primary); }
+    .btn-outline.light {
+      color: rgba(255,255,255,.75); border-color: rgba(255,255,255,.25);
+    }
+    .btn-outline.light:hover { border-color: rgba(255,255,255,.6); }
+    .btn-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+    /* ── Section header ── */
+    .section-eyebrow {
+      font-size: .72rem; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--accent);
+      font-weight: 600; margin-bottom: 6px;
+    }
+    .section-title { font-size: 1.75rem; margin-bottom: 10px; }
+    .section-desc  { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+    .section-header { margin-bottom: 36px; }
+
+    /* ── Questions ── */
+    .q-block    { margin-bottom: 28px; }
+    .q-text     { font-size: .95rem; font-weight: 500; line-height: 1.55; margin-bottom: 14px; }
+    .q-num      { color: var(--accent); font-weight: 700; }
+    .q-divider  { border: none; border-top: 1px solid var(--line); margin: 24px 0; }
+
+    /* choice options */
+    .options { display: grid; gap: 9px; }
+    .opt {
+      background: var(--white); border: 2px solid var(--line);
+      border-radius: var(--r-card); padding: 13px 16px;
+      cursor: pointer; display: flex; align-items: flex-start; gap: 11px;
+      transition: border-color .18s, background .18s; text-align: left;
+    }
+    .opt:hover               { border-color: var(--accent); background: #FFFBF5; }
+    .opt.selected            { border-color: var(--accent); background: #FFF8EC; }
+    .opt-letter {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--surface); color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700; transition: background .18s, color .18s;
+    }
+    .opt.selected .opt-letter { background: var(--accent); color: white; }
+    .opt-text { font-size: .875rem; color: var(--text); line-height: 1.5; }
+
+    /* likert */
+    .likert-q    { font-size: .9rem; font-weight: 500; line-height: 1.55; margin-bottom: 11px; }
+    .likert-dim  { font-size: .72rem; color: var(--muted); margin-left: 6px; font-weight: 400; }
+    .likert-row  { display: flex; gap: 6px; }
+    .likert-btn {
+      flex: 1; height: 42px;
+      background: var(--white); border: 2px solid var(--line);
+      border-radius: var(--r-soft); cursor: pointer;
+      font-size: .9rem; font-weight: 600; color: var(--muted);
+      transition: border-color .18s, background .18s, color .18s;
+    }
+    .likert-btn:hover                { border-color: var(--accent); color: var(--accent); }
+    .likert-btn.selected             { background: var(--accent); border-color: var(--accent); color: white; }
+    .likert-labels {
+      display: flex; justify-content: space-between;
+      font-size: .7rem; color: var(--muted); margin-top: 5px;
+    }
+
+    /* ── Nav ── */
+    .quiz-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line);
+    }
+    .quiz-counter { font-size: .82rem; color: var(--muted); }
+    .error-bar {
+      background: #FEF2F2; border: 1px solid #FECACA;
+      color: #DC2626; padding: 11px 15px; border-radius: var(--r-soft);
+      font-size: .82rem; margin-top: 14px; display: none;
+    }
+
+    /* ── Results hero ── */
+    .results-hero {
+      background: var(--primary); padding: 52px 0 44px;
+      margin: -52px 0 44px;
+    }
+    .results-hero .eyebrow {
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .results-hero h1 { font-size: 2rem; color: white; margin-bottom: 8px; }
+    .results-hero p  { color: rgba(255,255,255,.55); font-size: .88rem; }
+
+    /* ── Result cards ── */
+    .results-stack { display: grid; gap: 22px; }
+    .r-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: var(--r-card); padding: 26px;
+    }
+    .r-card-head {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+    }
+    .r-icon  { font-size: 1.5rem; }
+    .r-title { font-size: 1.1rem; line-height: 1.3; }
+    .r-sub   { font-size: .72rem; color: var(--muted); margin-top: 1px; }
+    .r-tag {
+      margin-left: auto;
+      background: var(--surface); border: 1px solid var(--line);
+      padding: 4px 12px; border-radius: var(--r-pill);
+      font-size: .75rem; color: var(--muted); white-space: nowrap;
+    }
+
+    /* score bars (generic) */
+    .score-row {
+      display: grid; gap: 11px; margin-bottom: 4px;
+    }
+    .score-item {
+      display: grid;
+      grid-template-columns: 28px 1fr 38px;
+      align-items: center; gap: 10px;
+    }
+    .score-item.wide {
+      grid-template-columns: 80px 1fr 38px;
+    }
+    .s-label { font-weight: 700; font-size: .88rem; }
+    .s-label.muted { font-size: .78rem; color: var(--muted); font-weight: 500; }
+    .s-track {
+      background: var(--surface); border-radius: var(--r-pill);
+      height: 10px; overflow: hidden;
+    }
+    .s-fill {
+      height: 100%; border-radius: var(--r-pill);
+      transition: width 1s ease;
+    }
+    .s-pct { font-size: .8rem; color: var(--muted); text-align: right; }
+
+    /* disc profile box */
+    .profile-box {
+      margin-top: 14px; padding: 14px 16px;
+      background: var(--surface); border-radius: var(--r-soft);
+    }
+    .profile-box strong { font-size: .88rem; display: block; margin-bottom: 4px; }
+    .profile-box p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* jung */
+    .jung-type { font-size: 3rem; font-weight: 600; color: var(--accent); font-family: 'Fraunces', serif; margin-bottom: 4px; }
+    .jung-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .jung-dims { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .jung-dim  {
+      background: var(--surface); border-radius: var(--r-soft); padding: 12px;
+    }
+    .jung-dim-lbl { font-size: .7rem; color: var(--muted); margin-bottom: 3px; }
+    .jung-dim-val { font-size: .88rem; font-weight: 600; }
+
+    /* spranger */
+    .sp-list { display: grid; gap: 10px; }
+    .sp-item { display: flex; align-items: center; gap: 10px; }
+    .sp-rank { font-weight: 700; color: var(--accent); font-size: 1rem; width: 22px; }
+    .sp-name { font-size: .875rem; font-weight: 500; flex: 1; }
+    .sp-track { width: 120px; background: var(--surface); height: 8px; border-radius: var(--r-pill); }
+    .sp-fill  { height: 100%; background: var(--accent); border-radius: var(--r-pill); }
+    .sp-score { font-size: .78rem; color: var(--muted); width: 32px; text-align: right; }
+
+    /* anxiety */
+    .anx-center { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-bottom: 14px; }
+    .anx-num    { font-size: 3.2rem; font-weight: 600; font-family: 'Fraunces', serif; }
+    .anx-lbl    { font-size: .9rem; color: var(--muted); }
+    .anx-bar-track { height: 14px; background: var(--surface); border-radius: var(--r-pill); overflow: hidden; margin-bottom: 14px; }
+    .anx-bar-fill  { height: 100%; border-radius: var(--r-pill); transition: width 1.2s ease; }
+    .anx-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; text-align: center; }
+
+    /* beliefs */
+    .beliefs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .belief-box   {
+      background: var(--surface); border-radius: var(--r-soft);
+      padding: 16px; text-align: center;
+    }
+    .belief-num { font-size: 1.9rem; font-weight: 600; font-family: 'Fraunces', serif; color: var(--accent); line-height: 1; }
+    .belief-max { font-size: .88rem; color: var(--muted); }
+    .belief-lbl { font-size: .76rem; color: var(--muted); margin-top: 4px; }
+    .belief-warning {
+      margin-top: 14px; padding: 12px 14px;
+      background: #FFF8EC; border: 1px solid #F59E0B40;
+      border-radius: var(--r-soft); font-size: .82rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta-card {
+      background: var(--primary); border-radius: var(--r-card);
+      padding: 40px; color: white; text-align: center;
+    }
+    .cta-eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: 10px; }
+    .cta-card h2 { font-size: 1.75rem; color: white; margin-bottom: 14px; }
+    .cta-card h2 em { color: var(--accent); }
+    .cta-card p  { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.7; margin-bottom: 28px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Lead form ── */
+    .lead-form { max-width: 480px; }
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-size: .82rem; font-weight: 600;
+      margin-bottom: 7px; color: var(--text);
+    }
+    .form-input {
+      width: 100%; padding: 12px 14px;
+      background: var(--white); border: 2px solid var(--line);
+      border-radius: var(--r-soft); font-family: 'Manrope', sans-serif;
+      font-size: .925rem; color: var(--text);
+      transition: border-color .18s; outline: none;
+    }
+    .form-input:focus    { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--muted); }
+    .form-privacy {
+      font-size: .75rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5;
+    }
+
+    /* ── Role cards ── */
+    .roles-intro { font-size:.82rem; color:var(--muted); line-height:1.65; margin-bottom:22px; padding:14px 16px; background:var(--surface); border-radius:var(--r-soft); border-left:3px solid var(--accent); }
+    .roles-grid  { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .role-card   { border:1px solid var(--line); border-radius:var(--r-soft); overflow:hidden; display:flex; flex-direction:column; }
+    .role-header { display:flex; align-items:flex-start; gap:12px; padding:16px 16px 14px; }
+    .role-icon-wrap { font-size:1.5rem; flex-shrink:0; margin-top:2px; }
+    .role-info   { flex:1; min-width:0; }
+    .role-badge-top { font-size:.65rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:.1em; display:block; margin-bottom:3px; }
+    .role-name   { font-size:.92rem; font-weight:700; line-height:1.2; }
+    .role-sub    { font-size:.7rem; color:var(--muted); margin-top:3px; line-height:1.35; }
+    .role-fit-badge {
+      flex-shrink:0; margin-left:6px;
+      padding:5px 10px; border-radius:var(--r-pill);
+      font-size:.8rem; font-weight:700; color:white; white-space:nowrap;
+    }
+    .role-fit-track { height:6px; background:var(--surface); }
+    .role-fit-fill  { height:100%; width:0; transition:width 1.4s cubic-bezier(.25,.8,.25,1); }
+    .role-desc { padding:12px 16px 8px; font-size:.78rem; color:var(--muted); line-height:1.55; border-top:1px solid var(--line); }
+    .role-why { padding:10px 16px 16px; flex:1; }
+    .role-why-label {
+      font-size:.65rem; text-transform:uppercase; letter-spacing:.1em;
+      color:var(--muted); font-weight:700; margin-bottom:8px;
+    }
+    .role-why ul { list-style:none; display:flex; flex-direction:column; gap:6px; }
+    .role-why li {
+      font-size:.76rem; color:var(--muted); line-height:1.5;
+      display:flex; gap:7px; align-items:flex-start;
+    }
+    .role-why li::before { content:'→'; color:var(--accent); font-weight:700; flex-shrink:0; margin-top:1px; }
+    @media (max-width:600px) { .roles-grid { grid-template-columns:1fr; } }
+
+    /* ── Print ── */
+    @media print {
+      .site-header, .quiz-nav, .cta-card { display: none; }
+      .screen { padding: 0; }
+      .r-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .intro-grid        { grid-template-columns: 1fr 1fr; }
+      .jung-dims         { grid-template-columns: 1fr; }
+      .beliefs-grid      { grid-template-columns: 1fr; }
+      .cta-row           { flex-direction: column; }
+      .quiz-nav          { flex-direction: column-reverse; gap: 12px; }
+      .score-item.wide   { grid-template-columns: 64px 1fr 36px; }
+      .sp-track          { width: 70px; }
+      .btn-accent, .btn-primary { width: 100%; justify-content: center; }
+    }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <div class="logo-wrap">
+        <div class="logo-mark">AV</div>
+        <div class="logo-text">Ana Vieira<span class="logo-sub">Teste de Autoconhecimento</span></div>
+      </div>
+      <div id="headerProgress"></div>
+    </div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ INTRO ═══════════════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="container">
+    <div class="badge"><span class="badge-dot"></span> Mapeamento de Identidade Completo</div>
+
+    <h1 class="intro-title">
+      Reencontre a mulher<br>que você <em>sempre foi</em>
+    </h1>
+
+    <p class="intro-lead">
+      Um mapeamento profundo em 7 dimensões: como você pensa, decide, se relaciona e ocupa espaço quando está sendo genuinamente você. Leva cerca de <strong>15 a 20 minutos</strong>. Resultado instantâneo.
+    </p>
+
+    <div class="intro-grid">
+      <div class="intro-item">
+        <div class="intro-item-icon">🎯</div>
+        <h4>DISC</h4>
+        <p>Seu comportamento natural na vida e nas relações</p>
+      </div>
+      <div class="intro-item">
+        <div class="intro-item-icon">🧠</div>
+        <h4>Tipos de Jung</h4>
+        <p>Como você processa emoções e toma decisões</p>
+      </div>
+      <div class="intro-item">
+        <div class="intro-item-icon">⚖️</div>
+        <h4>Valores Spranger</h4>
+        <p>O que realmente move você por dentro</p>
+      </div>
+      <div class="intro-item">
+        <div class="intro-item-icon">👑</div>
+        <h4>Liderança</h4>
+        <p>Seu estilo natural de influenciar e conduzir pessoas</p>
+      </div>
+      <div class="intro-item">
+        <div class="intro-item-icon">💎</div>
+        <h4>Crenças</h4>
+        <p>O que você acredita sobre si mesma e seu potencial</p>
+      </div>
+      <div class="intro-item">
+        <div class="intro-item-icon">🔑</div>
+        <h4>Autonomia e Relacionamento</h4>
+        <p>Independência emocional e qualidade dos vínculos</p>
+      </div>
+    </div>
+
+    <p class="intro-meta">
+      <span>✓ 64 perguntas</span>
+      <span>✓ ~15 minutos</span>
+      <span>✓ Resultado instantâneo</span>
+      <span>✓ 100% privado</span>
+    </p>
+
+    <div class="btn-row">
+      <button class="btn-accent" onclick="showLeadForm()">Iniciar mapeamento →</button>
+      <button class="btn-outline" onclick="loadSaved()">Continuar onde parei</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ LEAD FORM ═══════════════════════ -->
+<div id="screen-lead" class="screen">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Antes de começar</div>
+      <h2 class="section-title">Suas informações</h2>
+      <p class="section-desc">Preencha seus dados para personalizar sua análise.</p>
+    </div>
+
+    <div class="lead-form">
+      <div class="form-group">
+        <label class="form-label">Nome completo *</label>
+        <input type="text" id="leadName" class="form-input" placeholder="Seu nome completo" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-mail *</label>
+        <input type="email" id="leadEmail" class="form-input" placeholder="seu@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp com DDD *</label>
+        <input type="tel" id="leadWhatsapp" class="form-input" placeholder="(32) 99999-9999" autocomplete="tel">
+      </div>
+      <p class="form-privacy">🔒 Seus dados são utilizados exclusivamente para personalizar sua análise. Nenhuma informação é compartilhada com terceiros.</p>
+      <div class="error-bar" id="leadError">Preencha todos os campos para continuar.</div>
+      <div class="btn-row" style="margin-top:24px">
+        <button class="btn-accent" onclick="validateAndStart()">Iniciar mapeamento →</button>
+        <button class="btn-outline" onclick="show('intro')">← Voltar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ AGUARDANDO LIBERAÇÃO ═══════════════════════ -->
+<div id="screen-waiting" class="screen">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Acesso pendente</div>
+      <h2 class="section-title">Pedido enviado!</h2>
+      <p class="section-desc">Seu pedido foi recebido. Aguarde a aprovação, esta página vai abrir o teste automaticamente assim que seu acesso for liberado.</p>
+    </div>
+    <div class="lead-form" style="text-align:center">
+      <div id="waitingSpinner" style="font-size:3rem;margin-bottom:20px;animation:spin 2s linear infinite;display:inline-block">⏳</div>
+      <p id="waitingStatus" style="font-size:1.05rem;color:var(--muted);margin-bottom:28px">Verificando aprovação...</p>
+      <button class="btn-outline" onclick="checkApproval()" style="font-size:.9rem">↻ Verificar agora</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ QUIZ ═══════════════════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="container">
+    <div class="section-header" id="sectionHeader"></div>
+    <div id="questionsArea"></div>
+    <div class="error-bar" id="errorBar">Responda todas as perguntas desta seção antes de continuar.</div>
+    <div class="quiz-nav">
+      <button class="btn-outline" id="btnBack" onclick="prevSection()">← Voltar</button>
+      <span class="quiz-counter" id="quizCounter">Seção 1 de 7</span>
+      <button class="btn-primary" id="btnNext" onclick="nextSection()">Próxima seção →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ RESULTS ═══════════════════════ -->
+<div id="screen-results" class="screen">
+  <div class="results-hero">
+    <div class="container">
+      <p class="eyebrow">Análise completa</p>
+      <h1>Seu Mapa de Identidade</h1>
+      <p>Baseado nas suas respostas · <span id="resultDate"></span></p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="results-stack" id="resultsStack"></div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════════
+const SECTIONS = [
+  {
+    id:'disc', eyebrow:'DISC, Marston (1928)', icon:'🎯',
+    title:'Como você naturalmente é',
+    desc:'Responda com base em como você realmente age, na vida, nas relações e no dia a dia. Não o que seria ideal, mas o que é genuíno.',
+    type:'c4',
+    questions:[
+      { t:'Quando alguém que você ama faz algo que te magoa, você...', o:['Fala diretamente e resolve na hora, não deixa acumular','Tenta entender o lado do outro e busca a paz rapidamente','Absorve em silêncio e espera o momento certo para conversar','Analisa bem a situação antes de reagir e pensa em cada palavra'] },
+      { t:'Quando precisa tomar uma decisão importante na sua vida, você...', o:['Decide com rapidez com base no que sente, confia no instinto','Conversa com várias pessoas, ouve opiniões e busca apoio','Pesa cada aspecto com cuidado e prefere ter certeza antes de mudar','Pesquisa, analisa e cria critérios sólidos antes de decidir'] },
+      { t:'Pessoas próximas a você te descrevem como...', o:['Forte, determinada e direta','Animada, carinhosa e cheia de energia','Calma, paciente e sempre disponível para ajudar','Cuidadosa, criteriosa e muito confiável'] },
+      { t:'Quando uma situação na sua vida sai do controle, você...', o:['Age imediatamente para resolver, não consegue ficar parada','Mantém o ânimo, motiva quem está ao redor e busca saídas','Se mantém calma, suporta o processo e espera as coisas se encaixarem','Revisa tudo, identifica o que saiu errado e tenta entender o porquê'] },
+      { t:'Seu maior medo nas relações e na vida é...', o:['Perder o controle ou ser dominada por outra pessoa','Ser ignorada, rejeitada ou não aprovada por quem importa','Mudanças bruscas que quebrem a estabilidade e a rotina','Ser mal compreendida ou errar por falta de informação clara'] },
+      { t:'O ponto forte que as pessoas ao seu redor reconhecem em você é...', o:['Capacidade de agir e resolver com rapidez e força','Comunicação, energia e capacidade de conectar e inspirar','Constância, lealdade e presença consistente nas relações','Cuidado com os detalhes, precisão e confiabilidade'] },
+      { t:'Quando precisa expressar o que quer ou precisa, você...', o:['Fala com clareza e diretamente, sem rodeios','Usa emoção, humor e conexão pessoal para criar ambiente receptivo','Prefere mostrar com ações do que com palavras, não quer incomodar','Elabora o que vai dizer com cuidado antes de falar'] },
+      { t:'Seu ritmo de vida ideal é...', o:['Alta velocidade, múltiplos projetos e muita ação','Variado, com bastante interação e novidades constantes','Estável, com rotina previsível, relações sólidas e poucos imprevistos','Sistemática, com tempo para pensar e analisar antes de agir'] },
+      { t:'Quando comete um erro ou magoa alguém que ama, você...', o:['Assume, pede desculpa e segue em frente, não fica ruminando','Fica incomodada com a imagem que transmitiu e o que pensaram de você','Sente muito e se preocupa com o impacto na relação, quer reparar logo','Investiga o que saiu errado para entender e não repetir'] },
+      { t:'Como você prefere que as pessoas próximas expressem o que sentem?', o:['De forma direta, rápida e sem enrolação','De forma encorajadora, com carinho e reconhecimento','Com cuidado, em particular e com espaço para processar','Com clareza, exemplos concretos e sem contradições'] },
+      { t:'Na sua vida, você prioriza mais...', o:['Resultados, conquistas e independência','Conexão, alegria e relações que energizam','Estabilidade, harmonia e cuidado com quem ama','Qualidade, precisão e fazer as coisas do jeito certo'] },
+      { t:'Você se reconhece mais em...', o:['"Prefiro sofrer em movimento do que ficar parada esperando"','"Preciso de amor, presença e conexão para funcionar bem"','"Sou fiel, constante e estou sempre lá quando me precisam"','"Penso muito antes de agir, prefiro estar segura antes de me abrir"'] }
+    ]
+  },
+  {
+    id:'jung', eyebrow:'Tipos Psicológicos, Jung', icon:'🧠',
+    title:'Sua Vida Interior',
+    desc:'Em cada par, escolha a opção que mais descreve seu modo natural de ser, não o ideal, mas o genuíno. Como você realmente processa emoções, toma decisões e recupera energia.',
+    type:'c2',
+    questions:[
+      { t:'Eu recarrego minha energia...', o:['Em grupos, conversas e companhia, pessoas me restauram','Em silêncio e momentos sozinha, preciso de quietude para me recuperar'] },
+      { t:'Quando processo emoções difíceis, costumo...', o:['Conversar com alguém, falar ajuda a organizar o que sinto','Ficar sozinha por um tempo, preciso de silêncio para me recuperar'] },
+      { t:'Em termos de amizades, prefiro...', o:['Ter muitas pessoas ao redor, gosto de variedade e conexão ampla','Poucas amizades profundas, qualidade muito acima de quantidade'] },
+      { t:'Para tomar uma decisão importante na minha vida, prefiro...', o:['Discutir com pessoas próximas, o diálogo me ajuda a decidir','Processar internamente primeiro, só compartilho depois de concluir'] },
+      { t:'Para entender uma situação de conflito, confio mais em...', o:['Fatos concretos, o que realmente aconteceu e o que foi dito','Intuição, padrões que percebo e o que está implícito nas entrelinhas'] },
+      { t:'Meu foco natural está...', o:['No presente, no que está acontecendo agora, no concreto e real','No futuro, no que pode vir, nos cenários possíveis e no que está por trás'] },
+      { t:'Para entender um problema emocional, prefiro...', o:['Ter clareza do que aconteceu passo a passo, sequência e fatos','Compreender o padrão maior, o que isso representa e o que está debaixo'] },
+      { t:'Quando alguém compartilha um problema comigo, primeiro...', o:['Busco entender os detalhes concretos e oferecer algo prático','Percebo o contexto emocional maior e o que está implícito'] },
+      { t:'Ao tomar decisões difíceis na minha vida, priorizo...', o:['Lógica e objetividade, mesmo que a resposta doa','O impacto emocional em mim e nas pessoas envolvidas'] },
+      { t:'Quando alguém me magoa, prefiro...', o:['Entender o que foi objetivamente errado e como resolver','Cuidar primeiro do que sinto antes de tentar entender o outro'] },
+      { t:'Para mim, ser justa comigo mesma significa...', o:['Avaliar com clareza o que foi certo e errado, mesmo sendo duro','Considerar meu estado emocional e o contexto de cada situação'] },
+      { t:'O que me convence mais numa situação difícil é...', o:['Uma análise clara e lógica do que está acontecendo','Saber que minhas emoções e necessidades são legítimas e compreendidas'] },
+      { t:'Em relação à rotina da minha vida, prefiro...', o:['Tudo planejado, rotina e previsibilidade me dão segurança','Liberdade para adaptar, prefiro não me prender a planos rígidos'] },
+      { t:'Em relação a relacionamentos e compromissos, você...', o:['Prefere clareza e definição, não gosta de ficar no indefinido','Prefere deixar as coisas fluírem naturalmente, o tempo dirá'] },
+      { t:'O que te traz mais bem-estar no dia a dia?', o:['Dia estruturado, saber o que vem por aí, sensação de controle','Espontaneidade, liberdade para mudar de plano e seguir o fluxo'] },
+      { t:'Você prefere...', o:['Resolver situações com clareza e seguir em frente sem deixar em aberto','Manter possibilidades abertas, você processa melhor com o tempo'] }
+    ]
+  },
+  {
+    id:'spranger', eyebrow:'Hierarquia de Valores, Spranger', icon:'⚖️',
+    title:'O que realmente importa para você',
+    desc:'Avalie cada afirmação de 1 (discordo totalmente) a 5 (concordo totalmente) com sinceridade. Não há respostas certas ou erradas, apenas o que é real.',
+    type:'likert',
+    questions:[
+      { t:'Buscar conhecimento e entender profundamente como as coisas e as pessoas funcionam é algo central para mim.', dim:'Teórico' },
+      { t:'Gosto de entender comportamentos humanos, padrões emocionais e o que está por trás das relações.', dim:'Teórico' },
+      { t:'Avalio minhas escolhas principalmente pelo resultado concreto que trazem para a minha vida.', dim:'Econômico' },
+      { t:'Conquistas financeiras e independência econômica são motivadores reais e importantes para mim.', dim:'Econômico' },
+      { t:'A beleza, a harmonia e a estética importam muito para mim no ambiente em que vivo e nas coisas que crio.', dim:'Estético' },
+      { t:'Valorizo a qualidade e o cuidado com que as coisas são feitas, como algo é apresentado importa tanto quanto o conteúdo.', dim:'Estético' },
+      { t:'Me realizo profundamente quando posso cuidar, ajudar e impactar pessoas de forma direta e genuína.', dim:'Social' },
+      { t:'Servir a outros e contribuir para o bem de quem amo guia decisões importantes da minha vida.', dim:'Social' },
+      { t:'Ter impacto, ser reconhecida e ocupar posições de influência importa genuinamente para mim.', dim:'Político' },
+      { t:'Conquistar respeito, autoridade e reconhecimento no que faço é uma motivação real na minha vida.', dim:'Político' },
+      { t:'Busco um propósito maior para além dos resultados materiais, algo que transcende o cotidiano.', dim:'Transcendente' },
+      { t:'A espiritualidade, o significado profundo da vida ou a conexão com algo maior me move genuinamente.', dim:'Transcendente' }
+    ]
+  },
+  {
+    id:'leadership', eyebrow:'Hersey & Blanchard, Liderança Situacional', icon:'👑',
+    title:'Estilo de Liderança',
+    desc:'Escolha a opção que melhor descreve como você naturalmente age ao liderar pessoas, no trabalho, em casa ou em qualquer relação onde você influencia outros.',
+    type:'c4',
+    questions:[
+      { t:'Com alguém inexperiente que precisa da sua orientação (no trabalho ou na vida), você...', o:['Dá instruções claras e acompanha de perto cada passo','Ensina, explica e dá bastante feedback e direção','Pergunta como ela está se sentindo e oferece apoio emocional','Dá autonomia e confia que ela vai descobrir o caminho'] },
+      { t:'Com alguém experiente mas desmotivada, você...', o:['Cobra mais resultado e define metas claras e firmes','Conversa, entende o que está acontecendo e reorienta com coaching','Escuta com atenção, reconhece conquistas e fortalece a confiança','Dá um desafio novo com total autonomia e confia no processo'] },
+      { t:'Em crise, no trabalho, em família ou num grupo que você lidera, você naturalmente...', o:['Assume o comando, define o plano e conduz a execução','Reúne as pessoas para encontrar soluções juntas','Mantém o grupo unido e garante apoio emocional a todos','Delega para quem sabe mais sobre o problema específico'] },
+      { t:'Você acredita que quem lidera pessoas deve, acima de tudo...', o:['Definir com clareza o que espera de cada pessoa','Desenvolver cada pessoa para o seu próximo nível','Criar um ambiente seguro para crescer, errar e aprender','Confiar no time e dar espaço real para as pessoas brilharem'] },
+      { t:'Quando um resultado não vem, você primeiro...', o:['Analisa o que falhou no processo e corrige imediatamente','Conversa com cada pessoa sobre o que aprender com o erro','Garante que ninguém se sinta culpada ou desmotivada','Devolve a responsabilidade para quem estava à frente'] },
+      { t:'Para você, o melhor grupo, de trabalho, família ou amigos, é aquele que...', o:['Executa com precisão o que foi definido','Está em constante crescimento e aprendizado coletivo','Trabalha com harmonia, confiança e colaboração genuína','É autônomo e não precisa de supervisão constante'] },
+      { t:'As pessoas ao seu redor diriam que você lidera de forma...', o:['Clara, firme e totalmente orientada a resultado','Como uma parceira genuína de desenvolvimento e crescimento','Humana, próxima, acessível e sempre disponível','Confiante, dando espaço real para cada uma crescer'] },
+      { t:'Na tomada de decisão em grupo, você...', o:['Decide, comunica e conduz a execução','Decide depois de ouvir e discutir com o grupo','Busca consenso para que todas se sintam parte','Delega a decisão para quem está mais perto do problema'] }
+    ]
+  },
+  {
+    id:'beliefs', eyebrow:'Autoliderança, Crenças de Identidade', icon:'🧩',
+    title:'Crenças de Identidade',
+    desc:'Avalie de 1 (discordo totalmente) a 5 (concordo totalmente). Responda o que é real hoje, não o que deseja que fosse.',
+    type:'likert',
+    questions:[
+      { t:'Acredito que sou capaz de resolver qualquer desafio que apareça na minha vida pessoal e profissional.', dim:'Capacidade' },
+      { t:'Mereço plenamente os resultados que estou buscando, sem culpa e sem autopunição.', dim:'Merecimento' },
+      { t:'Sou a mulher e a líder que minha família e minha vida profissional precisam, agora, não no futuro.', dim:'Identidade' },
+      { t:'Consigo ter alto desempenho profissional sem sacrificar minha saúde e minhas relações pessoais.', dim:'Equilíbrio' },
+      { t:'Posso ser firme e forte no trabalho e ainda me vulnerabilizar nas relações íntimas, sem contradição.', dim:'Integridade' },
+      { t:'Minha identidade e autoestima independem dos meus resultados externos e da aprovação dos outros.', dim:'Autoestima' }
+    ]
+  },
+  {
+    id:'relacionamento', eyebrow:'Dinâmica Relacional', icon:'💞',
+    title:'Seu Relacionamento Íntimo',
+    desc:'Avalie de 1 (discordo totalmente) a 5 (concordo totalmente). Responda com honestidade sobre como você realmente age e se sente nas suas relações mais próximas.',
+    type:'likert',
+    questions:[
+      { t:'Consigo expressar o que preciso e o que me magoa sem medo de perder meu parceiro.', dim:'Autenticidade' },
+      { t:'Em situações de conflito, consigo ouvir sem precisar ganhar, e falar sem precisar ferir.', dim:'Comunicação' },
+      { t:'Me sinto segura para mostrar vulnerabilidade e fraquezas dentro da relação.', dim:'Segurança' },
+      { t:'Consigo respeitar minhas próprias necessidades sem me anular pelo relacionamento.', dim:'Equilíbrio' },
+      { t:'Sinto que sou genuinamente vista e valorizada, não pelo que faço, mas por quem sou.', dim:'Reconhecimento' },
+      { t:'O relacionamento me fortalece, ele me soma em vez de me consumir ou me reduzir.', dim:'Qualidade do Vínculo' }
+    ]
+  },
+  {
+    id:'abundance', eyebrow:'Autonomia Emocional e Financeira', icon:'🔑',
+    title:'Sua Independência',
+    desc:'Avalie de 1 (discordo totalmente) a 5 (concordo totalmente). Responda o que é real hoje, não o que deseja que fosse.',
+    type:'likert',
+    questions:[
+      { t:'Acredito genuinamente que posso construir uma vida que me realize, independente do meu relacionamento.', dim:'Autonomia de Vida' },
+      { t:'Consigo tomar decisões importantes sem precisar da validação ou aprovação de outras pessoas.', dim:'Autonomia Decisória' },
+      { t:'Minha independência financeira é algo que valorizo e protejo, mesmo dentro do relacionamento.', dim:'Autonomia Financeira' },
+      { t:'Quando penso em estar sozinha, a primeira emoção que sinto é de possibilidade, não de medo.', dim:'Autonomia Emocional' }
+    ]
+  }
+];
+
+const KEYS = ['disc','jung','spranger','leadership','beliefs','relacionamento','abundance'];
+
+const DISC_INFO = {
+  D:{ name:'Dominante', color:'#DC2626',
+      desc:'Você é assertiva, decidida e age com rapidez nas situações da vida. Enfrenta conflitos de frente, tem clareza do que quer e não gosta de depender. Esse padrão te dá força, mas pode dificultar a vulnerabilidade e o pedido de ajuda nas relações íntimas.' },
+  I:{ name:'Influente',  color:'#F59E0B',
+      desc:'Você conecta, inspira e anima os ambientes por onde passa. É expressiva, otimista e busca conexão genuína. Seu ponto de atenção é a dificuldade em dizer não e a tendência de priorizar a harmonia em detrimento das próprias necessidades.' },
+  S:{ name:'Estável',    color:'#059669',
+      desc:'Você é a âncora nas relações, confiável, consistente e profundamente comprometida. Prefere ambientes previsíveis e vínculos sólidos. Sua lealdade é um presente raro, mas a dificuldade em impor limites pode custar caro em relações desequilibradas.' },
+  C:{ name:'Criteriosa', color:'#2563EB',
+      desc:'Você analisa tudo antes de se decidir, nas relações e na vida. É detalhista, criteriosa e tem padrões elevados para si e para os outros. Pode se fechar emocionalmente quando o ambiente não parece seguro o suficiente para se abrir.' }
+};
+
+const LEADERSHIP_INFO = {
+  0:{ name:'Diretiva', icon:'⚡', desc:'Você lidera com clareza e firmeza, definindo expectativas e orientando com precisão. Forte em situações de crise e com pessoas que ainda estão construindo sua autonomia, no trabalho e na vida.' },
+  1:{ name:'Treinadora (Coach)', icon:'🎓', desc:'Você desenvolve pessoas, orientando com presença e feedback constante. Forte no crescimento individual e na formação de novas líderes ao seu redor, na carreira, em casa e nos grupos que frequenta.' },
+  2:{ name:'Apoiadora', icon:'🤝', desc:'Você constrói relações sólidas, cria ambientes seguros e apoia emocionalmente quem está ao seu redor. Forte na coesão de grupos, no engajamento genuíno e na criação de vínculos de confiança duradouros.' },
+  3:{ name:'Delegadora', icon:'🚀', desc:'Você confia nas pessoas, delega com autonomia e foca em visão e direção. Forte com pessoas experientes e times maduros, profissional ou pessoalmente, que operam com alta independência.' }
+};
+
+const JUNG_DESC = {
+  INTJ:'A Arquiteta, Visionária estratégica que combina intuição com análise rigorosa. Independente, determinada, com padrões elevados e orientada ao longo prazo.',
+  INTP:'A Lógica, Inovadora intelectual que ama teorias e possibilidades. Analítica, objetiva e curiosa. Prefere entender profundamente antes de agir.',
+  ENTJ:'A Comandante, Líder nata que identifica ineficiências e organiza o caminho para a solução. Assertiva, estratégica e orientada a resultado.',
+  ENTP:'A Debatedora, Inovadora ágil que desafia o status quo. Engenhosa, expressiva e energizada por desafios intelectuais.',
+  INFJ:'A Visionária, Idealista com visão de longo prazo. Principista, decisiva e apaixonada por causar impacto significativo em pessoas.',
+  INFP:'A Mediadora, Idealista criativa que busca autenticidade acima de tudo. Empática, reflexiva e fiel aos seus valores mais profundos.',
+  ENFJ:'A Protagonista, Líder carismática e inspiradora. Altruísta, confiável e genuinamente orientada a desenvolver o potencial das pessoas.',
+  ENFP:'A Ativista, Espírito criativo e curioso, sempre buscando conexões profundas. Energética, otimista e motivada por propósito.',
+  ISTJ:'A Logística, Executora confiável, detalhista e metódica. Comprometida com responsabilidades, processos e valores tradicionais.',
+  ISFJ:'A Defensora, Dedicada e cuidadosa, sempre presente para quem importa. Confiável, observadora e orientada a servir.',
+  ESTJ:'A Executiva, Administradora excelente, focada em ordem, processos e resultados. Direta, honesta e determinada.',
+  ESFJ:'A Cônsul, Sociável, altruísta e atenta às necessidades dos outros. Constrói harmonia e senso de pertencimento no grupo.',
+  ISTP:'A Virtuosa, Observadora analítica e prática. Aprende com a experiência direta. Reservada mas extremamente eficiente.',
+  ISFP:'A Aventureira, Sensível, flexível e com forte senso estético. Vive o presente com intensidade e autenticidade.',
+  ESTP:'A Empreendedora, Perspicaz e energética. Age primeiro e processa depois. Excelente em resolver crises com agilidade.',
+  ESFP:'A Animadora, Espontânea, dinâmica e entusiasta. Conecta pessoas e cria ambientes de alta energia e engajamento.'
+};
+
+// ════════════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════════════
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuGmrXvSaOMHI53u5HnDumGOKX3_uMrA9Zyboa_ZT6vnM6Z9GyEU49PrWrQqFVRVK/exec';
+
+// ════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════
+let leadData = { name: '', email: '', whatsapp: '' };
+
+let state = {
+  section: 0,
+  answers: {
+    disc:       new Array(12).fill(null),
+    jung:       new Array(16).fill(null),
+    spranger:   new Array(12).fill(null),
+    leadership: new Array(8).fill(null),
+    beliefs:    new Array(6).fill(null),
+    abundance:  new Array(4).fill(null),
+    relacionamento: new Array(6).fill(null)
+  }
+};
+
+// ════════════════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════════════════
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function showLeadForm() {
+  show('lead');
+}
+
+function validateAndStart() {
+  const name     = document.getElementById('leadName').value.trim();
+  const email    = document.getElementById('leadEmail').value.trim();
+  const whatsapp = document.getElementById('leadWhatsapp').value.trim();
+  const errBar   = document.getElementById('leadError');
+
+  if (!name || !email || !whatsapp) {
+    errBar.textContent = 'Preencha todos os campos para continuar.';
+    errBar.style.display = 'block';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errBar.textContent = 'Digite um e-mail válido.';
+    errBar.style.display = 'block';
+    return;
+  }
+  errBar.style.display = 'none';
+  leadData = { name, email, whatsapp };
+  solicitarAcesso(name, email, whatsapp);
+}
+
+let _pollTimer = null;
+
+function solicitarAcesso(nome, email, whatsapp) {
+  // Registra o participante no Sheets (fire-and-forget) e inicia o quiz imediatamente
+  if (WEBHOOK_URL) {
+    fetch(WEBHOOK_URL, {
+      method : 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body   : JSON.stringify({
+        action  : 'solicitar_acesso',
+        nome    : nome,
+        email   : email,
+        whatsapp: whatsapp,
+        source  : 'Perfil Ana Vieira'
+      })
+    }).catch(function(){});
+  }
+  startQuiz();
+}
+
+function startQuiz() {
+  state.section = 0;
+  show('quiz');
+  showProgress(true);
+  render();
+}
+
+function loadSaved() {
+  const raw = localStorage.getItem('ana_vieira_perfil');
+  if (!raw) { alert('Nenhum progresso salvo encontrado. Iniciando do começo.'); startQuiz(); return; }
+  try {
+    state = JSON.parse(raw);
+    show('quiz');
+    showProgress(true);
+    render();
+  } catch(e) { startQuiz(); }
+}
+
+function showProgress(on) {
+  document.getElementById('headerProgress').style.display = on ? 'block' : 'none';
+}
+
+function setProgress(pct) {
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('headerProgress').textContent = pct + '%';
+}
+
+function save() {
+  localStorage.setItem('ana_vieira_perfil', JSON.stringify(state));
+}
+
+function nextSection() {
+  const key = KEYS[state.section];
+  if (state.answers[key].some(a => a === null)) {
+    const bar = document.getElementById('errorBar');
+    bar.style.display = 'block';
+    bar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  document.getElementById('errorBar').style.display = 'none';
+  save();
+  if (state.section < SECTIONS.length - 1) {
+    state.section++;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    buildResults();
+  }
+}
+
+function prevSection() {
+  if (state.section > 0) {
+    state.section--;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    show('intro');
+  }
+}
+
+// ════════════════════════════════════════════════════
+// RENDER SECTION
+// ════════════════════════════════════════════════════
+function render() {
+  const sec = SECTIONS[state.section];
+  const key = KEYS[state.section];
+  const total = SECTIONS.length;
+
+  document.getElementById('sectionHeader').innerHTML = `
+    <div class="section-eyebrow">${sec.icon} ${sec.eyebrow}</div>
+    <h2 class="section-title">${sec.title}</h2>
+    <p class="section-desc">${sec.desc}</p>
+  `;
+  document.getElementById('quizCounter').textContent = `Seção ${state.section + 1} de ${total}`;
+  document.getElementById('btnBack').style.display = state.section === 0 ? 'none' : '';
+  document.getElementById('btnNext').textContent = state.section === total - 1 ? 'Ver meu perfil →' : 'Próxima seção →';
+  document.getElementById('errorBar').style.display = 'none';
+  setProgress(Math.round((state.section / total) * 100));
+
+  const area = document.getElementById('questionsArea');
+  area.innerHTML = '';
+
+  if (sec.type === 'c4' || sec.type === 'c2') {
+    renderChoice(sec, key, area);
+  } else {
+    renderLikert(sec, key, area);
+  }
+}
+
+function renderChoice(sec, key, area) {
+  const letters = sec.type === 'c2' ? ['A','B'] : ['A','B','C','D'];
+  sec.questions.forEach((q, qi) => {
+    const sel = state.answers[key][qi];
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    block.innerHTML = `
+      <p class="q-text"><span class="q-num">${qi+1}.</span> ${q.t}</p>
+      <div class="options">
+        ${q.o.map((opt, oi) => `
+          <div class="opt${sel===oi?' selected':''}" onclick="pick('${key}',${qi},${oi})">
+            <div class="opt-letter">${letters[oi]}</div>
+            <div class="opt-text">${opt}</div>
+          </div>`).join('')}
+      </div>
+    `;
+    area.appendChild(block);
+    if (qi < sec.questions.length - 1) {
+      const hr = document.createElement('hr');
+      hr.className = 'q-divider';
+      area.appendChild(hr);
+    }
+  });
+}
+
+function renderLikert(sec, key, area) {
+  sec.questions.forEach((q, qi) => {
+    const sel = state.answers[key][qi];
+    const item = document.createElement('div');
+    item.className = 'q-block';
+    item.innerHTML = `
+      <p class="likert-q"><span class="q-num">${qi+1}.</span> ${q.t} <span class="likert-dim">${q.dim}</span></p>
+      <div class="likert-row">
+        ${[1,2,3,4,5].map(v=>`<button class="likert-btn${sel===v?' selected':''}" onclick="pick('${key}',${qi},${v})">${v}</button>`).join('')}
+      </div>
+      <div class="likert-labels"><span>Discordo totalmente</span><span>Concordo totalmente</span></div>
+    `;
+    area.appendChild(item);
+    if (qi < sec.questions.length - 1) {
+      const hr = document.createElement('hr');
+      hr.className = 'q-divider';
+      area.appendChild(hr);
+    }
+  });
+}
+
+// ════════════════════════════════════════════════════
+// SELECTION HANDLERS
+// ════════════════════════════════════════════════════
+function pick(key, qi, val) {
+  state.answers[key][qi] = val;
+  document.getElementById('errorBar').style.display = 'none';
+
+  const area = document.getElementById('questionsArea');
+  const blocks = area.querySelectorAll('.q-block');
+  const block = blocks[qi];
+
+  const isLikert = typeof val === 'number' && val >= 1 && val <= 5 &&
+    SECTIONS[state.section].type === 'likert';
+
+  if (isLikert) {
+    block.querySelectorAll('.likert-btn').forEach((b, i) => {
+      b.classList.toggle('selected', i + 1 === val);
+    });
+  } else {
+    block.querySelectorAll('.opt').forEach((opt, i) => {
+      opt.classList.toggle('selected', i === val);
+    });
+  }
+}
+
+// ════════════════════════════════════════════════════
+// CALCULATIONS
+// ════════════════════════════════════════════════════
+function calcDISC() {
+  const s = {D:0,I:0,S:0,C:0};
+  const m = ['D','I','S','C'];
+  state.answers.disc.forEach(a => { if (a !== null) s[m[a]]++; });
+  return s;
+}
+
+function calcJung() {
+  const pairs = [
+    {a:'E',b:'I',label:'Extroversão / Introversão'},
+    {a:'S',b:'N',label:'Sensação / Intuição'},
+    {a:'T',b:'F',label:'Pensamento / Sentimento'},
+    {a:'J',b:'P',label:'Julgamento / Percepção'}
+  ];
+  return pairs.map((p, i) => {
+    const slice = state.answers.jung.slice(i*4, i*4+4);
+    const aCount = slice.filter(x => x === 0).length;
+    const bCount = 4 - aCount;
+    return { ...p, winner: aCount >= bCount ? p.a : p.b, aScore: aCount, bScore: bCount };
+  });
+}
+
+function calcSpranger() {
+  const acc = {};
+  SECTIONS[2].questions.forEach((q, i) => {
+    const v = state.answers.spranger[i] || 0;
+    acc[q.dim] = (acc[q.dim] || 0) + v;
+  });
+  return Object.entries(acc)
+    .map(([name,score]) => ({name, score, max:10}))
+    .sort((a,b) => b.score - a.score);
+}
+
+function calcLeadership() {
+  const s = [0,0,0,0];
+  state.answers.leadership.forEach(a => { if (a !== null) s[a]++; });
+  const primary = s.indexOf(Math.max(...s));
+  const total = s.reduce((a,b) => a+b, 0);
+  return { scores: s, primary, total, info: LEADERSHIP_INFO[primary] };
+}
+
+
+function calcBeliefs() {
+  const b = state.answers.beliefs;
+  const ab = state.answers.abundance;
+  return {
+    capacidade:  { score:(b[0]||0)+(b[3]||0), max:10, label:'Crença em Capacidade' },
+    merecimento: { score:(b[1]||0)+(b[5]||0), max:10, label:'Senso de Merecimento' },
+    identidade:  { score:(b[2]||0)+(b[4]||0), max:10, label:'Identidade e Integridade' },
+    abundancia:  { score:ab.reduce((s,v)=>s+(v||0),0), max:20, label:'Mentalidade de Abundância' }
+  };
+}
+
+// ════════════════════════════════════════════════════
+// BEST ROLES
+// ════════════════════════════════════════════════════
+function calcBestRoles(disc, jung, spranger, leadership, beliefs) {
+  const jStr = jung.map(d => d.winner).join('');
+  const dt   = Object.values(disc).reduce((a,b) => a+b, 0) || 1;
+  const dp   = { D: Math.round(disc.D/dt*100), I: Math.round(disc.I/dt*100), S: Math.round(disc.S/dt*100), C: Math.round(disc.C/dt*100) };
+  const sp3  = spranger.slice(0,3).map(s => s.name);
+  const lp   = leadership.primary;
+
+  function sc(rules) {
+    let s = 0; rules.forEach(([c,p]) => { if (c) s += p; }); return Math.min(98, s);
+  }
+
+  const ROLES = [
+    {
+      id:'exec', name:'Liderança Executiva', sub:'CEO · Diretor Geral · C-Level', icon:'👑', color:'#7C3AED',
+      desc:'Comando estratégico e tomada de decisão de alto impacto. Exige visão sistêmica, responsabilização e capacidade de mover organizações.',
+      fit: sc([
+        [dp.D >= 35, 28], [dp.D >= 45, 14], [jStr.includes('E'), 8],
+        [jStr.includes('T') && jStr.includes('J'), 20], [jStr.includes('T') || jStr.includes('J'), 8],
+        [sp3.includes('Político'), 22], [sp3[0] === 'Político', 12],
+        [lp === 0 || lp === 3, 16], [beliefs.identidade.score >= 8, 10], [beliefs.identidade.score >= 6, 5]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.D >= 30) r.push(`DISC D ${dp.D}%, orientação natural a resultados, decisão rápida e tolerância ao risco`);
+        if (sp3.includes('Político')) r.push(`valor "Político"${sp3[0]==='Político'?' (1º valor)':' (top 3)'}, motivação genuína por impacto de alto nível e influência organizacional`);
+        if (jStr.includes('T') && jStr.includes('J')) r.push(`tipo ${jStr}: objetividade (T) + estrutura (J) = decisões firmes e bem fundamentadas`);
+        if (lp === 0) r.push(`estilo Diretivo, clareza de comando e alta responsabilização do time`);
+        if (lp === 3) r.push(`estilo Delegador, foca em visão e estratégia macro, confia no time para a execução`);
+        if (beliefs.identidade.score >= 8) r.push(`crença de identidade forte (${beliefs.identidade.score}/10), se reconhece genuinamente como líder`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'biz', name:'Desenvolvimento de Negócios', sub:'Head Comercial · BizDev · Key Account', icon:'🤝', color:'#DC2626',
+      desc:'Abertura e expansão de oportunidades comerciais. Exige influência, persuasão e orientação a resultado financeiro concreto.',
+      fit: sc([
+        [dp.D >= 30, 20], [dp.D >= 20, 10], [dp.I >= 30, 20], [dp.I >= 20, 10],
+        [(dp.D + dp.I) >= 60, 14], [jStr.includes('E'), 18],
+        [sp3.includes('Econômico'), 22], [sp3[0] === 'Econômico', 10],
+        [sp3.includes('Político'), 10], [lp === 0 || lp === 1, 8]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.D >= 25 && dp.I >= 20) r.push(`combinação D${dp.D}% + I${dp.I}%, determinação para fechar negócios com persuasão e conexão genuína`);
+        else if (dp.D >= 28) r.push(`DISC D ${dp.D}%, força para superar objeções e fechar negócios sob pressão`);
+        else if (dp.I >= 28) r.push(`DISC I ${dp.I}%, carisma e influência que abre portas naturalmente`);
+        if (sp3.includes('Econômico')) r.push(`valor "Econômico"${sp3[0]==='Econômico'?' (1º)':''}, motivado por resultado financeiro tangível e crescimento de receita`);
+        if (jStr.includes('E')) r.push(`perfil Extrovertido (E), energia em interações e construção contínua de relacionamentos`);
+        if (sp3.includes('Político')) r.push(`valor "Político", interesse em influenciar organizações e construir posicionamento de mercado`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'mktg', name:'Marketing & Comunicação', sub:'CMO · Head de Marketing · Brand Strategist', icon:'📣', color:'#F59E0B',
+      desc:'Posicionamento, narrativa e engajamento de mercado. Exige criatividade, sensibilidade à percepção e capacidade de conectar emocionalmente.',
+      fit: sc([
+        [dp.I >= 35, 34], [dp.I >= 45, 10], [jStr.includes('E'), 12],
+        [jStr.includes('N'), 22], [jStr.includes('F'), 12],
+        [sp3.includes('Estético'), 28], [sp3[0] === 'Estético', 12],
+        [sp3.includes('Social'), 8]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.I >= 28) r.push(`DISC I ${dp.I}%, carisma, comunicação envolvente e capacidade natural de influenciar percepções`);
+        if (sp3.includes('Estético')) r.push(`valor "Estético"${sp3[0]==='Estético'?' (1º)':''}, atenção à experiência, narrativa visual e qualidade de apresentação`);
+        if (jStr.includes('N')) r.push(`perfil Intuitivo (N), visão de possibilidades, tendências e posicionamento de marca a longo prazo`);
+        if (jStr.includes('F')) r.push(`perfil Sentimental (F), sensibilidade ao impacto emocional das mensagens e à percepção do público`);
+        if (jStr.includes('E')) r.push(`perfil Extrovertido (E), energia para criar, apresentar e engajar audiências diversas`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'rh', name:'Gestão de Pessoas', sub:'CHRO · Head de RH · People Partner', icon:'🫂', color:'#059669',
+      desc:'Desenvolvimento, cultura e engajamento de talentos. Exige escuta ativa, empatia estrutural e visão de longo prazo em pessoas.',
+      fit: sc([
+        [dp.S >= 35, 28], [dp.S >= 45, 10], [jStr.includes('F'), 24],
+        [jStr.includes('E'), 8],
+        [sp3.includes('Social'), 32], [sp3[0] === 'Social', 14],
+        [lp === 1 || lp === 2, 18], [lp === 1, 10],
+        [beliefs.merecimento.score >= 7, 5]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.S >= 28) r.push(`DISC S ${dp.S}%, estabilidade emocional, escuta genuína e cuidado consistente com as pessoas`);
+        if (sp3.includes('Social')) r.push(`valor "Social"${sp3[0]==='Social'?' (1º valor)':''}, significado profundo em servir e impactar vidas diretamente`);
+        if (jStr.includes('F')) r.push(`perfil Sentimental (F), decisões baseadas no impacto humano, empatia como competência estratégica`);
+        if (lp === 1) r.push(`estilo Treinador, o desenvolvimento de pessoas é o seu diferencial natural de liderança`);
+        if (lp === 2) r.push(`estilo Apoiador, cria ambientes de segurança psicológica onde talentos florescem`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'ops', name:'Operações & Processos', sub:'COO · Head de Operações · Gestor de Processos', icon:'⚙️', color:'#64748B',
+      desc:'Eficiência, escala e confiabilidade operacional. Exige rigor em processos, controle de qualidade e execução consistente.',
+      fit: sc([
+        [dp.S >= 28, 16], [dp.C >= 28, 22], [(dp.S+dp.C) >= 55, 12],
+        [jStr.includes('S'), 18], [jStr.includes('J'), 22], [jStr.includes('T'), 8],
+        [sp3.includes('Econômico'), 8], [sp3.includes('Teórico'), 8], [lp === 0, 14]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.C >= 25) r.push(`DISC C ${dp.C}%, atenção a detalhes, controle de qualidade e intolerância com imprecisão`);
+        if (dp.S >= 25) r.push(`DISC S ${dp.S}%, consistência na execução, confiabilidade e estabilidade em alta demanda`);
+        if (jStr.includes('J')) r.push(`perfil Julgador (J), planejamento rigoroso e prazo como compromisso inegociável`);
+        if (jStr.includes('S')) r.push(`perfil Sensação (S), foco no concreto, no que funciona e em soluções comprovadas`);
+        if (lp === 0) r.push(`estilo Diretivo, capacidade de organizar recursos e responsabilizar equipes por metas`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'estrategia', name:'Estratégia & Consultoria', sub:'CSO · Consultor Estratégico · Advisor', icon:'🧭', color:'#0F3460',
+      desc:'Diagnóstico, modelagem e direcionamento de negócios. Exige visão sistêmica, pensamento analítico e capacidade de influenciar decisões de alto impacto.',
+      fit: sc([
+        [dp.D >= 25, 12], [dp.C >= 25, 18],
+        [jStr.includes('T'), 20], [jStr.includes('N'), 26], [jStr.includes('J'), 8],
+        [sp3.includes('Teórico'), 18], [sp3.includes('Político'), 18],
+        [sp3[0] === 'Teórico' || sp3[0] === 'Político', 12],
+        [lp === 3 || lp === 1, 8]
+      ]),
+      whyFn() {
+        const r = [];
+        if (jStr.includes('N') && jStr.includes('T')) r.push(`combinação NT em ${jStr}, visão sistêmica combinada com análise lógica estruturada`);
+        else if (jStr.includes('N')) r.push(`perfil Intuitivo (N), enxerga padrões e possibilidades além do óbvio`);
+        if (sp3.includes('Teórico')) r.push(`valor "Teórico"${sp3[0]==='Teórico'?' (1º)':''}, necessidade de compreender profundamente antes de recomendar`);
+        if (sp3.includes('Político')) r.push(`valor "Político", interesse em influenciar organizações e decisões de alto nível`);
+        if (dp.C >= 25) r.push(`DISC C ${dp.C}%, precisão analítica e rigor no diagnóstico de problemas complexos`);
+        if (dp.D >= 25) r.push(`DISC D ${dp.D}%, proatividade na proposta de soluções e senso de urgência estratégica`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'produto', name:'Produto & Inovação', sub:'Product Manager · Head de Produto · CTO', icon:'🚀', color:'#6366F1',
+      desc:'Criação e evolução de produtos e serviços. Exige visão de futuro, pensamento sistêmico e conexão entre negócio, tecnologia e usuário.',
+      fit: sc([
+        [dp.I >= 22, 12], [dp.D >= 22, 12],
+        [jStr.includes('N'), 28], [jStr.includes('T'), 12], [jStr.includes('P'), 16],
+        [sp3.includes('Político'), 12], [sp3.includes('Econômico'), 8], [sp3.includes('Teórico'), 16],
+        [lp === 3 || lp === 1, 12]
+      ]),
+      whyFn() {
+        const r = [];
+        if (jStr.includes('N')) r.push(`perfil Intuitivo (N), cria onde outros não enxergam, pensa em possibilidades e futuros alternativos`);
+        if (jStr.includes('P')) r.push(`perfil Perceptivo (P), adaptabilidade para pivotar e ajustar produto em ambientes incertos`);
+        if (sp3.includes('Teórico')) r.push(`valor "Teórico", curiosidade intelectual que alimenta inovação constante de produto`);
+        if (dp.D >= 22 && dp.I >= 18) r.push(`D+I (${dp.D+dp.I}%), iniciativa para criar e influenciar o mercado simultaneamente`);
+        if (lp === 3) r.push(`estilo Delegador, dá autonomia ao time técnico e mantém foco na visão estratégica`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'financas', name:'Finanças & Controladoria', sub:'CFO · Controller · Head Financeiro', icon:'📊', color:'#1D4ED8',
+      desc:'Gestão financeira, controle e planejamento de recursos. Exige rigor analítico, objetividade e visão de sustentabilidade econômica.',
+      fit: sc([
+        [dp.C >= 35, 30], [dp.C >= 45, 12],
+        [jStr.includes('S'), 18], [jStr.includes('T'), 22], [jStr.includes('J'), 18],
+        [sp3.includes('Econômico'), 26], [sp3[0] === 'Econômico', 10],
+        [sp3.includes('Teórico'), 8]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.C >= 30) r.push(`DISC C ${dp.C}%, rigor analítico, precisão e aversão natural a riscos e dados imprecisos`);
+        if (sp3.includes('Econômico')) r.push(`valor "Econômico"${sp3[0]==='Econômico'?' (1º)':''}, motivação por resultado financeiro e otimização de recursos`);
+        if (jStr.includes('T') && jStr.includes('J')) r.push(`tipo ${jStr}: objetividade (T) + organização (J) = tomada de decisão financeira rigorosa e confiável`);
+        if (jStr.includes('S')) r.push(`perfil Sensação (S), foco nos dados históricos e evidências concretas para análises e projeções`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'ld', name:'Treinamento & Desenvolvimento', sub:'Head de L&D · Facilitador · Coach Executivo', icon:'🎓', color:'#D97706',
+      desc:'Formação, capacitação e desenvolvimento de pessoas e líderes. Exige comunicação envolvente, empatia pedagógica e prazer genuíno no crescimento dos outros.',
+      fit: sc([
+        [dp.I >= 26, 22], [dp.S >= 20, 12],
+        [jStr.includes('E'), 12], [jStr.includes('F'), 20],
+        [sp3.includes('Social'), 25], [sp3.includes('Teórico'), 12],
+        [lp === 1 || lp === 2, 20], [lp === 1, 12]
+      ]),
+      whyFn() {
+        const r = [];
+        if (lp === 1) r.push(`estilo Treinador, o desenvolvimento do potencial de cada pessoa é seu modo natural de liderar`);
+        if (lp === 2) r.push(`estilo Apoiador, cria segurança emocional que facilita aprendizado profundo e duradouro`);
+        if (sp3.includes('Social')) r.push(`valor "Social", significado genuíno no crescimento e transformação de outras pessoas`);
+        if (dp.I >= 24) r.push(`DISC I ${dp.I}%, comunicação envolvente e energia que inspira e mantém pessoas engajadas`);
+        if (jStr.includes('F')) r.push(`perfil Sentimental (F), sensibilidade ao estado emocional dos alunos e empatia pedagógica`);
+        if (sp3.includes('Teórico')) r.push(`valor "Teórico", base de conhecimento sólida que dá profundidade e credibilidade ao ensino`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'cs', name:'Customer Success & Relacionamento', sub:'Head de CS · Account Manager · Pós-venda', icon:'🌟', color:'#10B981',
+      desc:'Fidelização, expansão e satisfação de clientes. Exige escuta empática, proatividade relacional e comprometimento com o sucesso do outro.',
+      fit: sc([
+        [dp.S >= 28, 22], [(dp.S+dp.I) >= 55, 12], [dp.I >= 22, 12],
+        [jStr.includes('F'), 22], [jStr.includes('E'), 12],
+        [sp3.includes('Social'), 28], [lp === 2 || lp === 1, 18]
+      ]),
+      whyFn() {
+        const r = [];
+        if (dp.S >= 25) r.push(`DISC S ${dp.S}%, paciência, consistência e cuidado genuíno que fideliza clientes`);
+        if (dp.I >= 20) r.push(`DISC I ${dp.I}%, energia relacional e capacidade de criar conexão rapidamente`);
+        if (sp3.includes('Social')) r.push(`valor "Social", satisfação real em garantir o sucesso e bem-estar dos outros`);
+        if (jStr.includes('F')) r.push(`perfil Sentimental (F), percebe necessidades não verbalizadas e age com empatia estruturada`);
+        if (lp === 2) r.push(`estilo Apoiador, constrói relações de longo prazo baseadas em confiança genuína`);
+        return r.slice(0,4);
+      }
+    },
+    {
+      id:'pesquisa', name:'Pesquisa & Análise', sub:'Research Lead · Analista Sênior · Data Analyst', icon:'🔬', color:'#475569',
+      desc:'Investigação profunda, síntese de dados e geração de insights. Exige concentração, rigor metodológico e prazer em compreender sistemas complexos.',
+      fit: sc([
+        [dp.C >= 30, 28], [dp.C >= 40, 10],
+        [jStr.includes('I'), 14], [jStr.includes('S'), 16],
+        [jStr.includes('T'), 22], [jStr.includes('J'), 12],
+        [sp3.includes('Teórico'), 32], [sp3[0] === 'Teórico', 14],
+        [lp === 3, 8]
+      ]),
+      whyFn() {
+        const r = [];
+        if (sp3.includes('Teórico')) r.push(`valor "Teórico"${sp3[0]==='Teórico'?' (1º valor)':''}, necessidade intrínseca de compreender profundamente, não apenas superficialmente`);
+        if (dp.C >= 28) r.push(`DISC C ${dp.C}%, precisão, método e tolerância zero com dados insuficientes ou análises rasas`);
+        if (jStr.includes('I')) r.push(`perfil Introvertido (I), concentração profunda e trabalho analítico sustentado por horas`);
+        if (jStr.includes('T')) r.push(`perfil Pensamento (T), raciocínio objetivo, estruturado e baseado em evidências verificáveis`);
+        if (jStr.includes('S')) r.push(`perfil Sensação (S), foco nos dados concretos, históricos e padrões observáveis`);
+        return r.slice(0,4);
+      }
+    },
+  ];
+
+  return ROLES
+    .map(r => ({ ...r, score: r.fit, why: r.whyFn() }))
+    .sort((a,b) => b.fit - a.fit)
+    .slice(0,2);
+}
+
+// ════════════════════════════════════════════════════
+// BUILD RESULTS
+// ════════════════════════════════════════════════════
+function buildResults() {
+  setProgress(100);
+  show('results');
+  localStorage.removeItem('ana_vieira_perfil');
+
+  document.getElementById('resultDate').textContent =
+    new Date().toLocaleDateString('pt-BR', {day:'numeric',month:'long',year:'numeric'});
+
+  const disc       = calcDISC();
+  const jung       = calcJung();
+  const spranger   = calcSpranger();
+  const leadership = calcLeadership();
+  const beliefs    = calcBeliefs();
+  const bestRoles  = calcBestRoles(disc, jung, spranger, leadership, beliefs);
+
+  const jungType = jung.map(d => d.winner).join('');
+  const discTotal = Object.values(disc).reduce((a,b)=>a+b,0);
+  const discPrimary = Object.entries(disc).sort((a,b)=>b[1]-a[1])[0][0];
+
+  const stack = document.getElementById('resultsStack');
+  stack.innerHTML = '';
+
+  // 1. DISC
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">🎯</div>
+        <div><div class="r-title">Perfil DISC</div><div class="r-sub">Comportamento natural, Marston (1928)</div></div>
+        <div class="r-tag">${DISC_INFO[discPrimary].name}</div>
+      </div>
+      <div class="score-row">
+        ${['D','I','S','C'].map(l => {
+          const pct = Math.round(((disc[l]||0)/discTotal)*100);
+          return `
+            <div class="score-item">
+              <div class="s-label" style="color:${DISC_INFO[l].color}">${l}</div>
+              <div class="s-track"><div class="s-fill" style="width:${pct}%;background:${DISC_INFO[l].color}"></div></div>
+              <div class="s-pct">${pct}%</div>
+            </div>`;
+        }).join('')}
+      </div>
+      <div class="profile-box">
+        <strong>Perfil primário: ${discPrimary}, ${DISC_INFO[discPrimary].name}</strong>
+        <p>${DISC_INFO[discPrimary].desc}</p>
+      </div>
+    </div>
+  `;
+
+  // 2. Jung
+  const jungDesc = JUNG_DESC[jungType] || `Tipo ${jungType}, perfil único com características multifacetadas.`;
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">🧠</div>
+        <div><div class="r-title">Tipo Psicológico</div><div class="r-sub">Jung, 16 tipos</div></div>
+        <div class="r-tag">${jungType}</div>
+      </div>
+      <div class="jung-type">${jungType}</div>
+      <p class="jung-desc">${jungDesc}</p>
+      <div class="jung-dims">
+        ${jung.map(d => {
+          const winScore = d.winner === d.a ? d.aScore : d.bScore;
+          const labels = [
+            ['Extrovertida','Introvertida'],
+            ['Sensação','Intuição'],
+            ['Pensamento','Sentimento'],
+            ['Julgamento','Percepção']
+          ];
+          const idx = jung.indexOf(d);
+          const winLabel = d.winner === d.a ? labels[idx][0] : labels[idx][1];
+          return `
+            <div class="jung-dim">
+              <div class="jung-dim-lbl">${d.label}</div>
+              <div class="jung-dim-val">${d.winner}, ${winLabel} (${winScore}/4)</div>
+            </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  // 3. Spranger
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">⚖️</div>
+        <div><div class="r-title">Hierarquia de Valores</div><div class="r-sub">Spranger, seus valores reais</div></div>
+      </div>
+      <div class="sp-list">
+        ${spranger.map((v,i) => `
+          <div class="sp-item">
+            <div class="sp-rank">${i+1}°</div>
+            <div class="sp-name">${v.name}</div>
+            <div class="sp-track"><div class="sp-fill" style="width:${(v.score/v.max)*100}%"></div></div>
+            <div class="sp-score">${v.score}/10</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+
+  // 4. Leadership
+  const lNames = ['Diretiva','Treinadora','Apoiadora','Delegadora'];
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">${leadership.info.icon}</div>
+        <div><div class="r-title">Estilo de Liderança</div><div class="r-sub">Hersey & Blanchard, Liderança Situacional</div></div>
+        <div class="r-tag">${leadership.info.name}</div>
+      </div>
+      <div class="score-row" style="margin-bottom:14px;">
+        ${leadership.scores.map((s,i) => {
+          const pct = Math.round((s / leadership.total) * 100);
+          return `
+            <div class="score-item wide">
+              <div class="s-label muted">${lNames[i]}</div>
+              <div class="s-track"><div class="s-fill" style="width:${pct}%;background:var(--accent)"></div></div>
+              <div class="s-pct">${pct}%</div>
+            </div>`;
+        }).join('')}
+      </div>
+      <div class="profile-box">
+        <strong>${leadership.info.icon} ${leadership.info.name}</strong>
+        <p>${leadership.info.desc}</p>
+      </div>
+    </div>
+  `;
+
+  // 5. Crenças e Identidade
+  const bArr = Object.values(beliefs);
+  const weakest = [...bArr].sort((a,b) => (a.score/a.max)-(b.score/b.max))[0];
+  const weakPct = Math.round((weakest.score/weakest.max)*100);
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">🧩</div>
+        <div><div class="r-title">Crenças e Identidade</div><div class="r-sub">Autoliderança e mentalidade de abundância</div></div>
+      </div>
+      <div class="beliefs-grid">
+        ${bArr.map(b => `
+          <div class="belief-box">
+            <div class="belief-num">${b.score}<span class="belief-max">/${b.max}</span></div>
+            <div class="belief-lbl">${b.label}</div>
+          </div>`).join('')}
+      </div>
+      ${weakPct <= 55 ? `<div class="belief-warning">⚠️ <strong>${weakest.label}</strong> é sua maior área de atenção (${weakPct}%). Fortalecer essa dimensão impacta diretamente sua capacidade de liderar, se relacionar e tomar decisões alinhadas com quem você é.</div>` : ''}
+    </div>
+  `;
+
+
+  // 6. Relacionamento
+  const relA = state.answers.relacionamento;
+  if (relA && relA.some(v => v !== null)) {
+    const relDims = [
+      {label:'Autenticidade',       score:relA[0]||0, max:5},
+      {label:'Comunicação',         score:relA[1]||0, max:5},
+      {label:'Segurança',           score:relA[2]||0, max:5},
+      {label:'Equilíbrio',          score:relA[3]||0, max:5},
+      {label:'Reconhecimento',      score:relA[4]||0, max:5},
+      {label:'Qualidade do Vínculo',score:relA[5]||0, max:5}
+    ];
+    const relWeak = relDims.reduce((a,b) => a.score < b.score ? a : b);
+    const relWeakPct = Math.round((relWeak.score / relWeak.max) * 100);
+    stack.innerHTML += `
+      <div class="r-card">
+        <div class="r-card-head">
+          <div class="r-icon">💞</div>
+          <div><div class="r-title">Seu Relacionamento Íntimo</div><div class="r-sub">Qualidade do vínculo e padrões relacionais</div></div>
+        </div>
+        <div class="beliefs-grid">
+          ${relDims.map(d => `
+            <div class="belief-box">
+              <div class="belief-num">${d.score}<span class="belief-max">/${d.max}</span></div>
+              <div class="belief-lbl">${d.label}</div>
+            </div>`).join('')}
+        </div>
+        ${relWeakPct <= 55 ? `<div class="belief-warning">⚠️ <strong>${relWeak.label}</strong> é sua maior área de atenção no relacionamento (${relWeakPct}%). Trabalhar essa dimensão pode transformar profundamente a qualidade da sua conexão íntima.</div>` : ''}
+      </div>
+    `;
+  }
+
+  // 7. Funções Ideais na Empresa
+  stack.innerHTML += `
+    <div class="r-card">
+      <div class="r-card-head">
+        <div class="r-icon">🏆</div>
+        <div>
+          <div class="r-title">Funções Ideais na Empresa</div>
+          <div class="r-sub">Cruzamento DISC + Jung + Spranger + Liderança + Crenças</div>
+        </div>
+      </div>
+      <div class="roles-intro">
+        Com base no cruzamento das 5 dimensões científicas do seu mapeamento, estas são as funções onde você tem maior fit natural, onde seu perfil encontra o ambiente ideal para performar e se realizar.
+      </div>
+      <div class="roles-grid">
+        ${bestRoles.map((role, idx) => `
+          <div class="role-card">
+            <div class="role-header" style="background:linear-gradient(135deg,${role.color}14,${role.color}04);border-left:3px solid ${role.color}">
+              <div class="role-icon-wrap">${role.icon}</div>
+              <div class="role-info">
+                <span class="role-badge-top">${idx === 0 ? 'Melhor fit' : 'Forte fit secundário'}</span>
+                <div class="role-name">${role.name}</div>
+                <div class="role-sub">${role.sub}</div>
+              </div>
+              <div class="role-fit-badge" style="background:${role.color}">${role.score}%</div>
+            </div>
+            <div class="role-desc">${role.desc}</div>
+            <div class="role-why">
+              <div class="role-why-label">Por que faz sentido para o seu perfil</div>
+              <ul>${role.why.map(w => `<li>${w}</li>`).join('')}</ul>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  `;
+
+  // 8. CTA
+  stack.innerHTML += `
+    <div class="cta-card">
+      <p class="cta-eyebrow">Próximo passo</p>
+      <h2>Seu mapa está <em>traçado</em>.<br>E agora?</h2>
+      <p>
+        Com base no seu mapeamento completo, DISC, Jung, Spranger, Liderança, Crenças, Relacionamento e Abundância, você agora tem clareza sobre seus padrões comportamentais e suas maiores áreas de crescimento.<br><br>
+        <strong>Agende uma conversa para entender o que o seu mapa revela, e o que você pode fazer com isso.</strong>
+      </p>
+      <div class="cta-row">
+        <button class="btn-outline light" onclick="doShare()">Compartilhar resultado</button>
+        <button class="btn-outline light" onclick="window.print()">Salvar como PDF</button>
+      </div>
+    </div>
+  `;
+
+  sendResults(disc, jung, spranger, leadership, beliefs, bestRoles);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function sendResults(disc, jung, spranger, leadership, beliefs, bestRoles) {
+  const discTotal   = Object.values(disc).reduce((a,b) => a+b, 0) || 1;
+  const discPrimary = Object.entries(disc).sort((a,b) => b[1]-a[1])[0][0];
+  const jungType    = jung.map(d => d.winner).join('');
+
+  const payload = {
+    action             : 'resultado',
+    timestamp          : new Date().toISOString(),
+    name               : leadData.name,
+    email              : leadData.email,
+    whatsapp           : leadData.whatsapp,
+    disc_D             : disc.D,
+    disc_I             : disc.I,
+    disc_S             : disc.S,
+    disc_C             : disc.C,
+    disc_primary       : discPrimary,
+    jung_type          : jungType,
+    spranger_1         : spranger[0] ? spranger[0].name + ' (' + spranger[0].score + '/10)' : '',
+    spranger_2         : spranger[1] ? spranger[1].name + ' (' + spranger[1].score + '/10)' : '',
+    spranger_3         : spranger[2] ? spranger[2].name + ' (' + spranger[2].score + '/10)' : '',
+    leadership_style   : leadership.info.icon + ' ' + leadership.info.name,
+    leadership_scores  : leadership.scores.join('/'),
+    anxiety_pct        : 0,
+    anxiety_level      : 'Não mapeado',
+    beliefs_capacidade : beliefs.capacidade.score,
+    beliefs_merecimento: beliefs.merecimento.score,
+    beliefs_identidade : beliefs.identidade.score,
+    beliefs_abundancia : beliefs.abundancia.score
+  };
+
+  fetch(WEBHOOK_URL, {
+    method : 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body   : JSON.stringify(payload)
+  }).catch(function(){});
+}
+
+function doShare() {
+  if (navigator.share) {
+    navigator.share({ title: 'Meu Mapa de Identidade, Ana Vieira', url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(() => alert('Link copiado para a área de transferência.'));
+  }
+}
+</script>
+</body>
+</html>
